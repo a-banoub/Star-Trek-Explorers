@@ -35,4 +35,4 @@ class Character:
 		
 	def call_combobox_archetype_select (self, title, values):
 		self.combobox = GUI.combobox(title, values)
-		self.values = list(archetypes.keys())
+		self.combobox.call()

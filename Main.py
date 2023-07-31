@@ -8,9 +8,9 @@ x = CharacterSheet.Character('Brian')
 
 archetype_names = list(CharacterSheet.archetypes.keys())
 
-Alex.call_combobox_archetype_select ("Choose an Archetype", archetype_names)
+combo = Alex.call_combobox_archetype_select("Test", archetype_names)
 
-Alex.combobox.call
+combo.call()
 
 ##x.stats = CharacterSheet.archetypes[archetype_names](0)
 ##Alex.stats = CharacterSheet.archetypes[archetype_names][1]
