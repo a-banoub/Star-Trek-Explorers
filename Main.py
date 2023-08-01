@@ -1,22 +1,17 @@
 import CharacterSheet
 from tkinter import *
 from tkinter import ttk
+import Archetypes
+
+CharacterName = input("Character Name: ")
+
+PlayerCharacter = CharacterSheet.Character(CharacterName)	
+print (PlayerCharacter.name)
+
+archetype_names = list(Archetypes.archetypes.keys())
+combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
 
 
-Alex = CharacterSheet.Character('Alex')
-x = CharacterSheet.Character('Brian')
-
-archetype_names = list(CharacterSheet.archetypes.keys())
-
-combo = Alex.call_combobox_archetype_select("Test", archetype_names)
-
-combo.call()
-
-##x.stats = CharacterSheet.archetypes[archetype_names](0)
-##Alex.stats = CharacterSheet.archetypes[archetype_names][1]
-
-print (x.name)
-print (x.stats)
-print (Alex.name)
-print (Alex.stats)
-
+print (PlayerCharacter.name)
+print (PlayerCharacter.archetype)
+print (PlayerCharacter.stats)
