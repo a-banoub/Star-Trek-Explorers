@@ -11,6 +11,8 @@ def confirm_archetype (self, archetype_name):
 	
 def confirm_statblock(self):
 	self.pc.set_stats(self.statblock)
+	self.root.destroy()
+	
 	
 class combobox () : 
 	def __init__(self, pc, title, values):
@@ -59,7 +61,7 @@ class combobox_1 () :
 		self.archetype_name = archetype
 #		self.values = values
 		self.pc = pc
-		self.statblock = {""}
+#		self.statblock = {""}
 		self.combo = ttk.Combobox(self.frm, values=Archetypes.archetypes[self.archetype_name]['StatBlocks'])
 		self.combo.grid (column = 0, row = 0)
 		self.combo.bind ("<<ComboboxSelected>>", self.option_selected)

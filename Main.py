@@ -15,3 +15,8 @@ combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose 
 print (PlayerCharacter.name)
 print (PlayerCharacter.archetype)
 print (PlayerCharacter.stats)
+
+
+PlayerCharacter.save_character()
+print ("PC Saved")
+

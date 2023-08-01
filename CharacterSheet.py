@@ -1,6 +1,8 @@
 import GUI
 import Archetypes
-
+import json
+import uuid
+import os
 
 class Character: 
 	def __init__(self,name):
@@ -9,7 +11,7 @@ class Character:
 		self.stats = {}
 		self.expertise = []
 		self.archetype = ""
-	
+		self.id = str(uuid.uuid4())
 	def add_expertise (self, expertise_name):
 		self.expertise = {expertise_name : 1}
 	
@@ -29,3 +31,28 @@ class Character:
 	def set_stats(self, stats):
 		self.stats = stats
 		print (self.name, self.stats)
+		
+	def save_character(self):
+		data = {
+			'name': self.name,
+			'stats': self.stats,
+			'archetype' : self.archetype,
+			'expertise': self.expertise,
+			'id': self.id
+		}
+		
+		filename = "CharacterDatabase.json"
+		
+		if os.path.isfile (filename):
+			print ("File Exists")
+			with open (filename, "r") as file:
+				characters_data = json.load(file)
+				characters_data.append(data)
+			with open (filename, "w") as file:
+				json.dump(characters_data, file)
+		else: 
+			print ("File does not exist")
+			with open (filename, "w") as file:
+				json.dump([data], file)
+				
+		
