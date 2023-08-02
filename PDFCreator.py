@@ -58,15 +58,15 @@ def mkpdf (pc):
 				print(f"Field '{field}' not found in the PDF form.")
 				continue
 		
+		fields = {formfields[key]: value for key, value in fieldvalues.items()}
 		flags = None
+		
 		writer.update_page_form_field_values(page, fields=formfields, flags=flags)
 			
 		return writer
 	
 	writer = write_fields (reader, fieldvalues)
-	
-	
+
+
 	with open(output_file, "wb") as f:
 		writer.write(f)
-#	
-#		

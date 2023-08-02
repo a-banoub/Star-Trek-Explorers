@@ -4,13 +4,16 @@ from tkinter import ttk
 import Archetypes
 import PDFCreator
 
-CharacterName = input("Character Name: ")
+CharacterName = 'test'
 
 PlayerCharacter = CharacterSheet.Character(CharacterName)	
-print (PlayerCharacter.name)
 
-archetype_names = list(Archetypes.archetypes.keys())
-combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
+PlayerCharacter.archetype = Archetypes.archetypes['The Outsider']
+statblocks = Archetypes.archetypes['The Outsider']['StatBlocks']
+PlayerCharacter.stats = statblocks[0]
+
+
+#combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
 
 print (PlayerCharacter.name)
 print (PlayerCharacter.archetype)

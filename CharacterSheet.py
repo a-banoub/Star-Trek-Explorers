@@ -56,5 +56,4 @@ class Character:
 			print ("File does not exist")
 			with open (filename, "w") as file:
 				json.dump([data], file)
-				
-		
+			
