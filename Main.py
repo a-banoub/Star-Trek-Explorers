@@ -2,6 +2,7 @@ import CharacterSheet
 from tkinter import *
 from tkinter import ttk
 import Archetypes
+import PDFCreator
 
 CharacterName = input("Character Name: ")
 
@@ -20,3 +21,4 @@ print (PlayerCharacter.stats)
 PlayerCharacter.save_character()
 print ("PC Saved")
 
+PDFCreator.mkpdf(PlayerCharacter)
