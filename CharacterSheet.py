@@ -12,6 +12,9 @@ class Character:
 		self.expertise = []
 		self.archetype = ""
 		self.id = str(uuid.uuid4())
+
+	def add_species (self, species):
+            self.species = species
 	
 	def add_expertise (self, expertise_name):
 		self.expertise.append ({expertise_name : 1})

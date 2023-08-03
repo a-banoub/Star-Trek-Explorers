@@ -30,7 +30,10 @@ def mkpdf (pc):
 		'stat_res': pc.stats ["Resourcefulness"],
 		'stat_emp': pc.stats['Empathy'],
 		'stat_log': pc.stats['Logic'],
-		'stat_tac': pc.stats['Tactics']
+		'stat_tac': pc.stats['Tactics'],
+		'species' : pc.species,
+		'archetype' : pc.archetype,
+		'expertise' : pc.expertise
 		}
 
 		return (fieldvalues)
@@ -61,14 +64,10 @@ def mkpdf (pc):
 		flags = None	
 		
 		writer.update_page_form_field_values(page, fields=formfields, flags=flags)
-		
-#		pass
-#		1+2
-#		1+2
+
 		return writer
 
 	writer = write_fields(reader, fieldvalues)
-
 
 	with open(output_file, "wb") as f:
 		writer.write(f)
