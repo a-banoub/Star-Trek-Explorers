@@ -46,19 +46,18 @@ def mkpdf (pc):
 	def write_fields (reader, fieldvalues):
 		writer = PyPDF2.PdfWriter(input_file)
 		writer.clone_document_from_reader(reader)
+		
 		for field,value in fieldvalues.items():
 			print (field,value)			
 			
 			if field in formfields:
-				formfields[field] = str (value)
+				formfields[field] = value
 				print (field)
-			
-			
 			else:
 				print(f"Field '{field}' not found in the PDF form.")
 				continue
 		
-		fields = {formfields[key]: value for key, value in fieldvalues.items()}
+#		fields = {formfields[key]: value for key, value in fieldvalues.items()}
 		flags = None
 		
 		writer.update_page_form_field_values(page, fields=formfields, flags=flags)
