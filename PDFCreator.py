@@ -14,12 +14,11 @@ def mkpdf (pc):
 	reader = PyPDF2.PdfReader(input_file)
 	page = reader._get_page(0)
 	
-	def get_fields():
-		formfields = reader.get_form_text_fields()
-		print(formfields)
-		return formfields
+	def get_fields(): #Defines function to get the fields
+		formfields = reader.get_form_text_fields() #calls the function from reader and defines "formfields" witnin scope of function
+		return formfields #returns the "formfields" value
 		
-	formfields = get_fields()
+	formfields = get_fields() #calls the newly defined get_fields function and returns the formfields variable in scope
 	
 	print (formfields.items())
 	print (formfields.keys())
@@ -51,7 +50,7 @@ def mkpdf (pc):
 			print (field,value)			
 			
 			if field in formfields:
-				formfields[field] = value
+				formfields[field] = value 	
 				print (field)
 			else:
 				print(f"Field '{field}' not found in the PDF form.")
