@@ -1,22 +1,74 @@
-import fitz  # PyMuPDF
+#!/usr/bin/env python3
 
-def get_form_field_values(pdf_file_path):
-    pdf_document = fitz.open(pdf_file_path)
-    
-    if '/AcroForm' in pdf_document.metadata:
-        acro_form = pdf_document.metadata['/AcroForm']
-        form_fields = acro_form.get_object()['/Fields']
-        
-        if form_fields:
-            print("Form Fields:")
-            for field in form_fields:
-                field_object = field.getObject()
-                field_name = field_object.get('/T')  # Get the field name
-                field_value = field_object.get('/V')  # Get the field value
-                print(f"{field_name}: {field_value}")
-        
-    pdf_document.close()
+import PyPDF2
 
-# Example usage with the sample PDF file
-pdf_file_path = 'test.pdf'
-get_form_field_values(pdf_file_path)
+input_file = "fillable_char_sheet.pdf"
+
+
+def mkpdf (pc):
+
+	pc = pc
+
+	statblock = {}
+	statblock = pc.stats
+	reader = PyPDF2.PdfReader(input_file)
+	page = reader.pages[0]
+
+	def get_fields():
+		formfields = reader.get_form_text_fields()
+		print(formfields)
+		return formfields
+
+	formfields = get_fields()
+
+	print (formfields.items())
+	print (formfields.keys())
+
+	def populate():
+		fieldvalues = {
+		'character_name' : pc.name,
+		'stat_res': pc.stats ["Resourcefulness"],
+		'stat_emp': pc.stats['Empathy'],
+		'stat_log': pc.stats['Logic'],
+		'stat_tac': pc.stats['Tactics']
+		}
+
+		return (fieldvalues)
+
+	fieldvalues = populate()
+
+	print ("\nformfields.items():", formfields.items())
+	print ("\nformfields.keys():", formfields.keys())
+	print ("\nfield values items:", fieldvalues.items())
+
+	output_file = f'{pc.name}{pc.id}.pdf'
+
+	def write_fields (reader, fieldvalues:dict):
+		
+		writer = PyPDF2.PdfWriter()
+		page = writer.add_page(reader.pages[0])
+		
+		for field,value in fieldvalues.items():
+			print (field,value)
+			if field in formfields:
+				formfields[field] = value
+				print (field)
+	
+			else:
+				print(f"\nField '{field}' not found in the PDF form.")
+				continue
+		
+		flags = None	
+		
+		writer.update_page_form_field_values(page, fields=formfields, flags=flags)
+		
+#		pass
+#		1+2
+#		1+2
+		return writer
+
+	writer = write_fields(reader, fieldvalues)
+
+
+	with open(output_file, "wb") as f:
+		writer.write(f)

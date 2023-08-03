@@ -10,7 +10,8 @@ def confirm_archetype (self, archetype_name):
 	self.pc.call_combobox_stat_select (self.pc, "Select StatBlock", self.archetype_name)
 	
 def confirm_statblock(self):
-	self.pc.set_stats(self.statblock)
+	print ('KEYS: ', self.statblock.keys())
+	self.pc.set_stats (self.statblock)
 	self.root.destroy()
 	
 	
@@ -51,7 +52,9 @@ class combobox () :
 	
 	def call(self):	
 		self.root.mainloop()
+
 class combobox_1 () : 
+	
 	def __init__(self, pc, title, archetype):
 		self.root = Tk()
 		self.root.title (title)
@@ -61,7 +64,7 @@ class combobox_1 () :
 		self.archetype_name = archetype
 #		self.values = values
 		self.pc = pc
-#		self.statblock = {""}
+		self.statblock = {}
 		self.combo = ttk.Combobox(self.frm, values=Archetypes.archetypes[self.archetype_name]['StatBlocks'])
 		self.combo.grid (column = 0, row = 0)
 		self.combo.bind ("<<ComboboxSelected>>", self.option_selected)
@@ -69,7 +72,10 @@ class combobox_1 () :
 		self.button1.grid (column = 0, row = 1)	
 		
 	def option_selected (self, event): 
-		self.statblock = self.combo.get()
+		
+		index = self.combo.current()
+		self.statblock = Archetypes.archetypes[self.archetype_name]['StatBlocks'][index]
+		print (self.statblock)
 		print (self.statblock)
 		
 	def call(self):	
