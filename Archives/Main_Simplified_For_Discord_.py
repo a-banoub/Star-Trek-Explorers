@@ -4,7 +4,7 @@ from tkinter import ttk
 import Archetypes
 import PDFCreator
 
-CharacterName = 'test'
+CharacterName = 'test2'
 
 PlayerCharacter = CharacterSheet.Character(CharacterName)	
 

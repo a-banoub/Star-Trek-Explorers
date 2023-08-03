@@ -6,64 +6,68 @@ input_file = "fillable_char_sheet.pdf"
 
 
 def mkpdf (pc):
-	
+
 	pc = pc
-	
+
 	statblock = {}
 	statblock = pc.stats
 	reader = PyPDF2.PdfReader(input_file)
-	page = reader._get_page(0)
-	
-	def get_fields(): #Defines function to get the fields
-		formfields = reader.get_form_text_fields() #calls the function from reader and defines "formfields" witnin scope of function
-		return formfields #returns the "formfields" value
-		
-	formfields = get_fields() #calls the newly defined get_fields function and returns the formfields variable in scope
-	
+	page = reader.pages[0]
+
+	def get_fields():
+		formfields = reader.get_form_text_fields()
+		print(formfields)
+		return formfields
+
+	formfields = get_fields()
+
 	print (formfields.items())
 	print (formfields.keys())
-	
+
 	def populate():
 		fieldvalues = {
-			'character_name' : pc.name,
-			'stat_res': pc.stats ["Resourcefulness"],
-			'stat_emp': pc.stats['Empathy'],
-			'stat_log': pc.stats['Logic'],
-			'stat_tac': pc.stats['Tactics']
+		'character_name' : pc.name,
+		'stat_res': pc.stats ["Resourcefulness"],
+		'stat_emp': pc.stats['Empathy'],
+		'stat_log': pc.stats['Logic'],
+		'stat_tac': pc.stats['Tactics']
 		}
-		
+
 		return (fieldvalues)
-	
+
 	fieldvalues = populate()
-	
-	print ("formfields.items():", formfields.items())
-	print ("formfields.keys():", formfields.keys())
-	print ("field values items:", fieldvalues.items())
-	
+
+	print ("\nformfields.items():", formfields.items())
+	print ("\nformfields.keys():", formfields.keys())
+	print ("\nfield values items:", fieldvalues.items())
+
 	output_file = f'{pc.name}{pc.id}.pdf'
-	
-	def write_fields (reader, fieldvalues):
-		writer = PyPDF2.PdfWriter(input_file)
-		writer.clone_document_from_reader(reader)
+
+	def write_fields (reader, fieldvalues:dict):
+		
+		writer = PyPDF2.PdfWriter()
+		page = writer.add_page(reader.pages[0])
 		
 		for field,value in fieldvalues.items():
-			print (field,value)			
-			
+			print (field,value)
 			if field in formfields:
-				formfields[field] = value 	
+				formfields[field] = value
 				print (field)
+	
 			else:
-				print(f"Field '{field}' not found in the PDF form.")
+				print(f"\nField '{field}' not found in the PDF form.")
 				continue
 		
-#		fields = {formfields[key]: value for key, value in fieldvalues.items()}
-		flags = None
+		flags = None	
 		
 		writer.update_page_form_field_values(page, fields=formfields, flags=flags)
-			
+		
+#		pass
+#		1+2
+#		1+2
 		return writer
-	
-	writer = write_fields (reader, fieldvalues)
+
+	writer = write_fields(reader, fieldvalues)
 
 
 	with open(output_file, "wb") as f:
