@@ -9,7 +9,7 @@ CharacterName = input("Character Name: ")
 PlayerCharacter = CharacterSheet.Character(CharacterName)	
 print (PlayerCharacter.name)
 
-species = input ("Species Name")
+species = input ("Species Name: ")
 PlayerCharacter.add_species (species)
 
 archetype_names = list(Archetypes.archetypes.keys())
