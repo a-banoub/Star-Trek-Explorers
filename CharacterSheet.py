@@ -9,15 +9,17 @@ class Character:
 		pc = self
 		self.name = name
 		self.stats = {}
-		self.expertise = []
+		self.expertise = {
+			'expertise1': 1
+		}
 		self.archetype = ""
 		self.id = str(uuid.uuid4())
 
 	def add_species (self, species):
             self.species = species
 	
-	def add_expertise (self, expertise_name):
-		self.expertise.append ({expertise_name : 1})
+#	def add_expertise (self, expertise_name):
+#		self.expertise.append ({expertise_name : 1})
 	
 	def call_combobox_archetype_select (self, pc, title, values):
 		self.combobox = GUI.combobox(pc, title, values)
