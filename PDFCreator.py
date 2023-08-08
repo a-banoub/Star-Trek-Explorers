@@ -25,16 +25,27 @@ def mkpdf (pc):
 	print (formfields.keys())
 
 	def populate():
+		def get_exp(expertise):
+			exp = ""
+			print (expertise.items())
+			for key, value in expertise.items():
+				print (key,value)
+				exp.join (f'{key} : {value}')
+				
+			return exp
+		
+		exp = get_exp(pc.expertise)
+		
 		fieldvalues = {
-		'character_name' : pc.name,
-		'stat_res': pc.stats ["Resourcefulness"],
-		'stat_emp': pc.stats['Empathy'],
-		'stat_log': pc.stats['Logic'],
-		'stat_tac': pc.stats['Tactics'],
-		'species' : pc.species,
-		'archetype' : pc.archetype,
-		'expertise' : pc.expertise
-		}
+			'character_name' : pc.name,
+			'stat_res': pc.stats ["Resourcefulness"],
+			'stat_emp': pc.stats['Empathy'],
+			'stat_log': pc.stats['Logic'],
+			'stat_tac': pc.stats['Tactics'],
+			'species' : pc.species,
+			'archetype' : pc.archetype,
+			'expertise' : exp
+			}
 
 		return (fieldvalues)
 
@@ -71,3 +82,4 @@ def mkpdf (pc):
 
 	with open(output_file, "wb") as f:
 		writer.write(f)
+		
