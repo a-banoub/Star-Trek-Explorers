@@ -12,6 +12,8 @@ distance = 0.0646027555153078
 light_years_conversion_distance = 12.6
 scaling_factor = light_years_conversion_distance / distance
 
+
+
 def plotcourse (currentplanet):	
 	destination = input('Planet to Search?')
 	with open(filename, "r") as file:
@@ -52,6 +54,29 @@ def plotcourse (currentplanet):
 	
 	print (destinationname, 'is', distance_ly, 'light years away')
 	
+	def calculate_travel_time(warp_factor):
+		
+		c = 3.0 * 10**8  # Speed of light in m/s
+		wf = warp_factor
+		speed = wf ** (10/3) * c  # Speed in m/s
+		distance_meters = distance_ly * (9.461e15)
+		travel_time_seconds = distance_meters / speed
+		travel_time_days = travel_time_seconds / (24 * 60 * 60)
+		
+		print ('Warp Factor: ', wf)
+		print ('Speed: ', speed)
+		print(f'Travel Time: {travel_time_days:.2f} days')
+
+		return travel_time_days
+	
+	for warp_factor in range(1, 10):
+		travel_time = calculate_travel_time(warp_factor)
+		if travel_time > 365:
+			travel_years = travel_time/365
+			print(f"Warp Factor {warp_factor}: Travel Time = {travel_years:.2f} years")
+		else: 
+			print(f"Warp Factor {warp_factor}: Travel Time = {travel_time:.2f} days")
+			
 	user_input = input ('Plot a course? Y/N')
 		
 	if user_input == ('Y'):
@@ -61,7 +86,6 @@ def plotcourse (currentplanet):
 	
 	else:
 		pass
-
 
 currentplanet = plotcourse(currentplanet)
 
