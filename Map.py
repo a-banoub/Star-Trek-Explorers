@@ -7,6 +7,10 @@ filename = 'MapData.json'
 
 currentplanet = 'Sol'
 
+distance = 0.0646027555153078
+light_years_conversion_distance = 12.6
+scaling_factor = light_years_conversion_distance / distance
+
 destination = input('Planet to Search?')
 
 
@@ -28,6 +32,7 @@ with open(filename, "r") as file:
 			if feature ["properties"] ["subclass"] == 'major':
 				
 				print("Found by Name:", feature)
+				destinationname = feature['properties'] ['name']
 				destinationcoords = feature['geometry']['coordinates']
 				found = True
 				break
@@ -42,3 +47,7 @@ distance = math.sqrt(
 )
 
 print ('Distance = ', distance)
+
+distance_ly = distance * scaling_factor
+
+print (destinationname, 'is', distance_ly, 'light years away')
