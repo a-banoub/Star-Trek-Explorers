@@ -6,8 +6,6 @@ import random
 
 filename = 'MapData.json'
 
-currentplanet = 'Sol'
-
 
 distance = 0.0646027555153078
 
@@ -16,9 +14,9 @@ scaling_factor = light_years_conversion_distance / distance
 
 
 with open(filename, "r") as file:
-	
 	mapdata = json.load(file)
 	found = False
+	
 	def get_starting_coords(currentplanet): 
 		for feature in mapdata['features']:
 			if feature ["properties"] ["name"] == currentplanet:

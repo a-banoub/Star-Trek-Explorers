@@ -15,7 +15,7 @@ class game ():
 			'ID' : str(uuid.uuid4()),
 			'Characters': {
 			},
-			'Current System': None,
+			'Current System': 'Sol',
 			'Ship' : None,
 			'Captain' : None,
 			'GameState' : GameStates [0],

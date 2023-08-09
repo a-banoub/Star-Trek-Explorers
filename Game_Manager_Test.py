@@ -5,6 +5,7 @@ import Archetypes
 import PDFCreator
 import GameManager
 import os
+import MapMaker
 
 game = GameManager.game('Ballsack2')
 
@@ -28,3 +29,5 @@ PlayerCharacter.save_character()
 print ("PC Saved")
 
 PDFCreator.mkpdf(PlayerCharacter)
+
+MapMaker.plotcourse(game.properties['Current System'])
