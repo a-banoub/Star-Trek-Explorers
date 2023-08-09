@@ -15,7 +15,7 @@ class Character:
 		self.archetype = ""
 		self.id = str(uuid.uuid4())
 		self.game = game
-		
+
 	def add_species (self, species):
             self.species = species
 	
@@ -41,6 +41,7 @@ class Character:
 		return self.stats
 		
 	def save_character(self):
+		self.game.properties['Characters'].append({'Name' : self.name, 'ID' : self.id})
 		data = {
 			'name': self.name,
 			'stats': self.stats,
@@ -63,4 +64,5 @@ class Character:
 			print ("File does not exist")
 			with open (filename, "w") as file:
 				json.dump([data], file)
+		
 			

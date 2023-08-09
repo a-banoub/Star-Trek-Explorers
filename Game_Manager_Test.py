@@ -7,7 +7,7 @@ import GameManager
 import os
 import MapMaker
 
-game = GameManager.game('Dada')
+game = GameManager.game('DasaYyy')
 
 game.savegamedata()
 
@@ -33,3 +33,5 @@ print ("PC Saved")
 PDFCreator.mkpdf(PlayerCharacter, game)
 
 MapMaker.plotcourse(game.properties['Current System'], game)
+
+game.savegamedata()

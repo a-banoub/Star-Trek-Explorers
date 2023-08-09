@@ -15,8 +15,7 @@ class game ():
 		self.properties = {
 			'Campaign Name': name ,
 			'ID' : str(uuid.uuid4()),
-			'Characters': {
-			},
+			'Characters': [],
 			'Current System': 'Sol',
 			'Ship' : None,
 			'Captain' : None,
