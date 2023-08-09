@@ -28,6 +28,6 @@ print (PlayerCharacter.stats)
 PlayerCharacter.save_character()
 print ("PC Saved")
 
-PDFCreator.mkpdf(PlayerCharacter)
+PDFCreator.mkpdf(PlayerCharacter, game)
 
 MapMaker.plotcourse(game.properties['Current System'])
