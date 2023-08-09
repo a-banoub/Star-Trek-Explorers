@@ -58,6 +58,7 @@ class Character:
 				characters_data.append(data)
 			with open (filename, "w") as file:
 				json.dump(characters_data, file)
+		
 		else: 
 			print ("File does not exist")
 			with open (filename, "w") as file:

@@ -15,10 +15,9 @@ scaling_factor = light_years_conversion_distance / distance
 
 
 				
-def plotcourse (currentplanet):	
-	
+def plotcourse (currentplanet, game):	
+	game = game
 	with open(filename, "r") as file:
-		
 		mapdata = json.load (file)
 		found = False
 		
@@ -86,7 +85,9 @@ def plotcourse (currentplanet):
 	if user_input == ('Y'):
 		currentplanet = destinationname
 		print ('Moved to: ', currentplanet)
+		game.properties ['Current System'] : currentplanet
 		return (currentplanet)
+	
 	
 	else:
 		pass

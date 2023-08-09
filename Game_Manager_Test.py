@@ -7,7 +7,9 @@ import GameManager
 import os
 import MapMaker
 
-game = GameManager.game('Ballsack2')
+game = GameManager.game('dsdd')
+
+game.savegamedata()
 
 CharacterName = input("Character Name: ")
 
@@ -30,4 +32,4 @@ print ("PC Saved")
 
 PDFCreator.mkpdf(PlayerCharacter, game)
 
-MapMaker.plotcourse(game.properties['Current System'])
+MapMaker.plotcourse(game.properties['Current System'], game)
