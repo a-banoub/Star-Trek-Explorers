@@ -54,39 +54,30 @@ class game ():
 		}
 		print (data)
 		
-		
-		if os.path.isfile(gamelog):
-			with open(gamelog, "r") as file:
+		if os.path.isfile (gamelog):
+			print ("File Exists")
+			
+			with open (gamelog, "r") as file:
 				file_content = file.read()
-				
-		
-			try:
-				game_data = json.loads(file_content)
-				
-				# Find the index of the existing data entry with the same ID
-				index_to_replace = None
-				for i, existing_data in enumerate(game_data):
-					if existing_data['ID'] == data['ID']:
-						index_to_replace = i
-						break
-					
-				if index_to_replace is not None:
-					# Replace the existing data entry with the new data
-					game_data[index_to_replace] = data
-				else:
-					# If the data entry with the same ID doesn't exist, append the new data
+			
+				try: 
+					print ("File Content: ", file_content)
+					game_data = json.loads(file_content)
+					game_data.append(data)
+			
+					with open (gamelog, "w") as file:
+						json.dump (game_data, file)
+
+				except json.JSONDecodeError:
+					game_data = []
 					game_data.append(data)
 					
-				with open(gamelog, "w") as file:
-					json.dump(game_data, file)
-						
-			except json.JSONDecodeError:
-				game_data = [data]
-				with open(gamelog, "w") as file:
-					json.dump(game_data, file)
-			else:
-				game_data = [data]
-				with open(gamelog, "w") as file:
-					json.dump(game_data, file)
-	
-						
+					with open (gamelog, "w") as file:
+						json.dump (game_data, file)
+		else: 
+			game_data = []
+			game_data.append(data)
+			print (game_data)
+			with open (gamelog, "w") as file:
+				json.dump(game_data, file)
+					

@@ -86,6 +86,7 @@ def plotcourse (currentplanet, game):
 		currentplanet = destinationname
 		print ('Moved to: ', currentplanet)
 		game.properties ['Current System'] : currentplanet
+		game.savegamedata()
 		return (currentplanet)
 	
 	
