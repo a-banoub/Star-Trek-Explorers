@@ -10,8 +10,6 @@ GameStates = [
 class game ():
 	def __init__(self, name):
 		game = self
-		
-				
 		self.properties = {
 			'Campaign Name': name ,
 			'ID' : str(uuid.uuid4()),
@@ -20,7 +18,8 @@ class game ():
 			'Current System': None,
 			'Ship' : None,
 			'Captain' : None,
-			'GameState' : GameStates [0]
+			'GameState' : GameStates [0],
+			'Explored Planets' : []
 		}
 		
 		def make_game_directory():
@@ -29,9 +28,10 @@ class game ():
 			self.dir = dir
 			return dir
 		
-		dir = make_game_directory()
-		source_file = 'MapData.json'
-		destination_file = os.path.join(dir, source_file)
-		shutil.copy(source_file, destination_file)
+		self.dir = make_game_directory()
 		
-	
+		source_file = 'MapData.json'
+		
+		destination_file = os.path.join (self.dir, source_file)
+		
+		shutil.copy(source_file, destination_file)

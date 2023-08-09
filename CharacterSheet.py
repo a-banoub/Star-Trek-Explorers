@@ -5,7 +5,7 @@ import uuid
 import os
 
 class Character: 
-	def __init__(self,name):
+	def __init__(self,name, game):
 		pc = self
 		self.name = name
 		self.stats = {}
@@ -14,7 +14,8 @@ class Character:
 		}
 		self.archetype = ""
 		self.id = str(uuid.uuid4())
-
+		self.game = game
+		
 	def add_species (self, species):
             self.species = species
 	
@@ -48,7 +49,7 @@ class Character:
 			'id': self.id
 		}
 		
-		filename = "CharacterDatabase.json"
+		filename = os.path.join (self.game.dir , "CharacterDatabase.json")
 		
 		if os.path.isfile (filename):
 			print ("File Exists")
