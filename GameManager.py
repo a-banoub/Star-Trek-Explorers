@@ -58,9 +58,7 @@ class game ():
 			print ("File Exists")
 			with open(gamelog, "r") as file:
 				file_content = file.read()
-				
-		
-			try:
+			
 				game_data = json.loads(file_content)
 				index_to_replace = None
 				
@@ -77,11 +75,11 @@ class game ():
 					
 				with open(gamelog, "w") as file:
 					json.dump(game_data, file)
-						
-			except json.JSONDecodeError:
-				game_data = [data]
-				with open(gamelog, "w") as file:
-					json.dump(game_data, file)
+							
+#			except json.JSONDecodeError:
+#				game_data = [data]
+#				with open(gamelog, "w") as file:
+#					json.dump(game_data, file)
 		
 		else:
 			game_data = [data]
