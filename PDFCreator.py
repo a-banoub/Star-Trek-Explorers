@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
 import PyPDF2
+import os
 
 input_file = "fillable_char_sheet.pdf"
 
 
-def mkpdf (pc):
+def mkpdf (pc, game):
 
 	pc = pc
-
+	game = game
 	statblock = {}
 	statblock = pc.stats
 	reader = PyPDF2.PdfReader(input_file)
@@ -55,8 +56,10 @@ def mkpdf (pc):
 	print ("\nformfields.keys():", formfields.keys())
 	print ("\nfield values items:", fieldvalues.items())
 
-	output_file = f'{pc.name}{pc.id}.pdf'
-
+	output_file = os.path.join (game.dir , f'{pc.name}{pc.id}.pdf')
+#	output_file = f'{pc.name}{pc.id}.pdf'
+#	filename = os.path.join (self.game.dir , "CharacterDatabase.json")
+#	
 	def write_fields (reader, fieldvalues:dict):
 		
 		writer = PyPDF2.PdfWriter()

@@ -4,8 +4,11 @@ from tkinter import _tkinter
 import CharacterSheet
 import Archetypes
 
+
+root = Tk()
+
 def confirm_archetype (self, archetype_name):
-	self.pc.set_archetype(self.archetype_name)
+	self.pc.set_archetype (self.archetype_name)
 	self.root.destroy()
 	self.pc.call_combobox_stat_select (self.pc, "Select StatBlock", self.archetype_name)
 	
@@ -13,11 +16,12 @@ def confirm_statblock(self):
 	print ('KEYS: ', self.statblock.keys())
 	self.pc.set_stats (self.statblock)
 	self.root.destroy()
+	root.destroy()
 	
 	
 class combobox () : 
 	def __init__(self, pc, title, values):
-		self.root = Tk()
+		self.root = Toplevel(root)
 		self.root.title (title)
 		self.root.geometry ('400x400')
 		self.frm = ttk.Frame (self.root, padding = 10)
@@ -31,7 +35,6 @@ class combobox () :
 		self.combo = ttk.Combobox(self.frm, values=values)
 		self.combo.grid (column = 0, row = 0)
 		self.combo.bind ("<<ComboboxSelected>>", self.option_selected)
-		
 		self.button1 = ttk.Button(self.frm, text="Confirm Archetype", command= lambda: confirm_archetype(self,self.archetype_name))
 		self.button1.grid (column = 1, row = 0)	
 				
@@ -56,7 +59,8 @@ class combobox () :
 class combobox_1 () : 
 	
 	def __init__(self, pc, title, archetype):
-		self.root = Tk()
+		
+		self.root = Toplevel(root)
 		self.root.title (title)
 		self.root.geometry ('400x400')
 		self.frm = ttk.Frame (self.root, padding = 10)
