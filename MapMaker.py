@@ -13,24 +13,27 @@ light_years_conversion_distance = 12.6
 scaling_factor = light_years_conversion_distance / distance
 
 
-
+def get_starting_coords(currentplanet): 
+	with open(filename, "r") as file:
+		mapdata = json.load (file)
+		found = False
+		
+	for feature in mapdata['features']:
+		if feature ["properties"] ["name"] == currentplanet:
+				print("Found by Name:", feature)
+				startingcoords = feature['geometry']['coordinates']
+				return startingcoords
+		else: 
+			pass
 				
 def plotcourse (currentplanet, game):	
 	game = game
 	with open(filename, "r") as file:
 		mapdata = json.load (file)
 		found = False
-		
-		def get_starting_coords(currentplanet): 
-			for feature in mapdata['features']:
-				if feature ["properties"] ["name"] == currentplanet:
-						print("Found by Name:", feature)
-						startingcoords = feature['geometry']['coordinates']
-						return startingcoords
-				else: 
-					pass
-					
+	
 	startingcoords = get_starting_coords(currentplanet)
+	
 	destination = input('Planet to Search?')
 	for feature in mapdata['features']:
 		if feature ["properties"] ["name"] == destination:
@@ -95,15 +98,16 @@ def plotcourse (currentplanet, game):
 
 	
 	
-	def generate_random_coordinates(max_distance_ly):
-		startingcoords = get_starting_coords(currentplanet)
-		
-		max_distance_m = max_distance_ly * (9.461e15)  # Convert light years to meters
-		
-		delta_x = random.uniform(-max_distance_m, max_distance_m)
-		delta_y = random.uniform(-max_distance_m, max_distance_m)
-		new_coords = [
-			startingcoords[0] + delta_x,
-			startingcoords[1] + delta_y
-		]
-		return new_coords
+def generate_random_coordinates(max_distance_ly, game):
+	
+	startingcoords = get_starting_coords(game.properties['Current System'])
+
+	max_distance_m = max_distance_ly * (9.461e15)  # Convert light years to meters
+	
+	delta_x = random.uniform(-max_distance_m, max_distance_m)
+	delta_y = random.uniform(-max_distance_m, max_distance_m)
+	new_coords = [
+		startingcoords[0] + delta_x,
+		startingcoords[1] + delta_y
+	]
+	return new_coords

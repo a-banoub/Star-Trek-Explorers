@@ -56,9 +56,9 @@ class game ():
 		
 		if os.path.isfile(gamelog):
 			print ("File Exists")
+			
 			with open(gamelog, "r") as file:
 				file_content = file.read()
-			
 				game_data = json.loads(file_content)
 				index_to_replace = None
 				
