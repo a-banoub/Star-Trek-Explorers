@@ -7,7 +7,7 @@ import GameManager
 import os
 import MapMaker
 
-game = GameManager.game('dsddd')
+game = GameManager.game('Dada')
 
 game.savegamedata()
 
