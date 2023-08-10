@@ -37,5 +37,5 @@ quit = False
 
 while quit is False:
 	MapMaker.plotcourse(game.properties['Current System'], game)
-
-game.savegamedata()
+	game.savegamedata()
+	

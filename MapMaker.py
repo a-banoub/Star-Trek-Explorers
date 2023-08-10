@@ -35,6 +35,7 @@ def plotcourse (currentplanet, game):
 	startingcoords = get_starting_coords(currentplanet)
 	
 	destination = input('Planet to Search?')
+	
 	for feature in mapdata['features']:
 		if feature ["properties"] ["name"] == destination:
 			if feature ["properties"] ["subclass"] == 'major':
