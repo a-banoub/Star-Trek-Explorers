@@ -4,11 +4,20 @@ import os
 import json
 
 class planet:
-	def __init__(self, name, game):
+	
+	def __init__(self, name, game, imported):
 		
 		self.game = game		
-		max_distance_ly = int ( input ("Max Distance from Current Location"))		
-		self.coords = MapMaker.generate_random_coordinates (max_distance_ly, game)
+		
+		
+		print ('Imported:', imported)
+
+		if imported == False: 
+			max_distance_ly = int ( input ("Max Distance from Current Location"))		
+			self.coords = MapMaker.generate_random_coordinates (max_distance_ly, game)
+		else: 
+			self.coords = None
+			
 		self.properties = {
 				"class": "planet",
 				"id" : str(uuid.uuid4()),

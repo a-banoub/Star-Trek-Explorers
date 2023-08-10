@@ -2,6 +2,7 @@ import uuid
 import os
 import shutil
 import json
+import pickle
 
 GameStates = [
 	'Downtime', 'On Duty', 'Away Mission'
@@ -24,6 +25,8 @@ class game ():
 			'Explored Planets' : []
 		}
 		
+		self.planetlog = {}
+		
 		def make_game_directory():
 			dir = os.path.join('Games', self.properties['Campaign Name'])
 			if os.path.isdir(dir):
@@ -36,8 +39,26 @@ class game ():
 				
 		def copymapdata(): 
 			source_file = 'MapData.json'
-			destination_file = os.path.join (self.dir, source_file)
-			shutil.copy(source_file, destination_file)
+			destination_file = os.path.join (self.dir, 'MapData.pickle')
+			
+			with open (source_file, 'r') as file: 
+				map_data = json.load(file)
+				
+				for planet_data in map_data['features']:  # Iterate over the list of features
+					import Planet
+					
+					CopiedPlanet = Planet.planet(planet_data['properties']['name'], self.game, True)
+					CopiedPlanet.geometry = planet_data['geometry']
+					
+					self.planetlog[CopiedPlanet.properties['id']] = CopiedPlanet	
+					
+					print (CopiedPlanet.properties)
+					print (CopiedPlanet.geometry)
+					
+			with open (destination_file , 'wb') as pickle_file:
+				pickle.dump(self.planetlog, pickle_file)
+			
+#			shutil.copy(source_file, destination_file)
 
 		copymapdata()
 	

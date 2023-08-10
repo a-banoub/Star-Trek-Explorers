@@ -21,7 +21,7 @@ scaling_factor_meters = scaling_factor * 9.461e15
 
 def get_starting_coords(currentplanet, game): 
 
-	filename = os.path.join(game.dir, 'MapData.json')
+	filename = 'MapData.json'
 	
 	print ('Current Planet: ', currentplanet)
 #	print (currentplanet ['geometry'])

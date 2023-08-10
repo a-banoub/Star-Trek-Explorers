@@ -27,7 +27,7 @@ class gmenu:
 					
 				if UserInput == 'newplanet':
 					import Planet
-					NewPlanet = Planet.planet(input ('Planet Name?'), game)
+					NewPlanet = Planet.planet(input ('Planet Name?'), game, False)
 					NewPlanet.saveplanet()
 				
 					
