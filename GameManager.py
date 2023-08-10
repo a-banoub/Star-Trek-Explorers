@@ -8,7 +8,7 @@ GameStates = [
 ]
 
 gamelog = 'gamelog.json'
-
+	
 class game ():
 	
 	def __init__(self, name):
@@ -26,15 +26,18 @@ class game ():
 		
 		def make_game_directory():
 			dir = os.path.join('Games',self.properties['Campaign Name'])
-			os.makedirs(dir)
-			self.dir = dir
-			return dir
-	
+			
+			if os.path.isdir(dir):
+				self.dir = dir
+			else:
+				os.makedirs(dir)
+				self.dir = dir
+				return dir
+		
 		def copymapdata(): 
 			source_file = 'MapData.json'
 			destination_file = os.path.join (self.dir, source_file)
 			shutil.copy(source_file, destination_file)
-		
 		self.dir = make_game_directory()
 		
 		copymapdata()
@@ -54,7 +57,6 @@ class game ():
 		
 		if os.path.isfile(gamelog):
 			print ("File Exists")
-			
 			with open(gamelog, "r") as file:
 				
 				file_content = file.read()

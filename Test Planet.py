@@ -3,7 +3,7 @@ import GameManager
 import MapMaker
 
 Name = 'Test Planet'
-gname = "33"
+gname = "3333"
 
 game = GameManager.game(gname)
 
