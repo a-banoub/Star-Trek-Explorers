@@ -119,23 +119,18 @@ def plotcourse (currentplanet, game):
 		Loader.savegame(game)
 		return (currentplanet)
 	
-	
 	else:
 		pass
 
-	
-	
 def generate_random_coordinates(max_distance_ly, game):
 	
-
 	startingcoords = get_starting_coords(game.properties['Current System'], game)
-	
+
 	print ('Starting Coords: ', startingcoords)
 	print ('Max Distance in Light Years: ', max_distance_ly)
 	
 	max_distance_m = max_distance_ly * 9.461e15  # Convert light years to meters
-	max_distance_m_scaled = max_distance_m / scaling_factor_meters
-	
+	max_distance_m_scaled = max_distance_m / scaling_factor_meters	
 	
 	print ('Max Distance in Meters: ', max_distance_m_scaled)
 	

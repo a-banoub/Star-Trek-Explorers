@@ -2,7 +2,6 @@ import GameManager
 import Loader
 import MapMaker
 
-
 class gmenu: 
 				
 	def __init__(self, game):
@@ -16,7 +15,8 @@ class gmenu:
 				
 				if UserInput == 'quit':
 					self.quit = True
-				
+					Loader.loadmainmenu()
+					
 				if UserInput == 'help':
 					print ("'quit' will quit the program.")
 					print ("'plotcourse' will search a sector and plot a course.")
@@ -25,6 +25,11 @@ class gmenu:
 					MapMaker.plotcourse(game.properties['Current System'], game)
 #					Loader.savegame(game)
 					
+				if UserInput == 'newplanet':
+					import Planet
+					NewPlanet = Planet.planet(input ('Planet Name?'), game)
+					NewPlanet.saveplanet()
+				
 					
 		self.quit = False
 		self.game = game
