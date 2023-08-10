@@ -4,6 +4,7 @@ import json
 import math
 import random
 import os
+import Loader
 
 #filename = 'MapData.json'
 
@@ -115,6 +116,7 @@ def plotcourse (currentplanet, game):
 		print ('Moved to: ', currentplanet)
 		game.properties ['Current System'] = currentplanet
 		game.savegamedata()
+		Loader.savegame(game)
 		return (currentplanet)
 	
 	

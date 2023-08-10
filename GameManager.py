@@ -25,21 +25,20 @@ class game ():
 		}
 		
 		def make_game_directory():
-			dir = os.path.join('Games',self.properties['Campaign Name'])
-			
+			dir = os.path.join('Games', self.properties['Campaign Name'])
 			if os.path.isdir(dir):
-				self.dir = dir
+					self.dir = dir
 			else:
-				os.makedirs(dir)
-				self.dir = dir
-				return dir
-		
+					os.makedirs(dir)
+					self.dir = dir
+								
+		make_game_directory()
+				
 		def copymapdata(): 
 			source_file = 'MapData.json'
 			destination_file = os.path.join (self.dir, source_file)
 			shutil.copy(source_file, destination_file)
-		self.dir = make_game_directory()
-		
+
 		copymapdata()
 	
 	def savegamedata(self):
@@ -86,3 +85,4 @@ class game ():
 			with open(gamelog, "w") as file:
 				json.dump (game_data, file)
 
+				

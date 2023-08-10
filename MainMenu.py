@@ -1,5 +1,4 @@
 import Loader
-
 quit = False
 
 while quit == False:
@@ -19,6 +18,11 @@ while quit == False:
 		game = Loader.newgame()
 		quit = True
 		Loader.loadgamemenu(game)
-	
+		
+	if userinput == 'loadgame':
+		game = Loader.loadgame()
+		quit = True
+#		Loader.loadgamemenu(game)
+		
 	else: 
 		pass

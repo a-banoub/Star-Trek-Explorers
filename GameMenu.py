@@ -1,5 +1,7 @@
 import GameManager
 import Loader
+import MapMaker
+
 
 class gmenu: 
 				
@@ -7,15 +9,23 @@ class gmenu:
 		
 		def loadmenu(self):
 			while self.quit == False: 
-				UserInput = input('Prompt?: ')
+			
+				print ('Campaign Status: ', game.properties)
+				
+				UserInput = input('Game Menu (type help for options) Prompt? : ')
 				
 				if UserInput == 'quit':
 					self.quit = True
-					
-				if UserInput == 'status':
-					print (game.properties)
 				
-								
+				if UserInput == 'help':
+					print ("'quit' will quit the program.")
+					print ("'plotcourse' will search a sector and plot a course.")
+				
+				if UserInput == 'plotcourse':
+					MapMaker.plotcourse(game.properties['Current System'], game)
+#					Loader.savegame(game)
+					
+					
 		self.quit = False
 		self.game = game
 		
