@@ -25,7 +25,6 @@ class planet:
 			"type": "Point",
 			"coordinates": self.coords
 		}
-		
 	
 	def saveplanet(self):
 		planetlog = os.path.join(self.game.dir, 'MapData.json')

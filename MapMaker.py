@@ -37,7 +37,14 @@ def get_starting_coords(currentplanet, game):
 		
 		else: 
 			pass
-				
+
+def update_explored (game, currentplanet): 
+	print (currentplanet)
+	if currentplanet in game.properties['Explored Planets']:
+		print ("Planet Previously Explored")
+	else : 
+		game.properties['Explored Planets'].append(currentplanet)
+		
 def plotcourse (currentplanet, game):	
 	game = game
 	
@@ -101,6 +108,9 @@ def plotcourse (currentplanet, game):
 	user_input = input ('Plot a course? Y/N')
 		
 	if user_input == ('Y'):
+		
+		update_explored(game, currentplanet)
+		
 		currentplanet = destinationname
 		print ('Moved to: ', currentplanet)
 		game.properties ['Current System'] = currentplanet
