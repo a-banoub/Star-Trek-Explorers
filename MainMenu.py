@@ -16,7 +16,9 @@ while quit == False:
 		print ('quit: Quits the program')
 		
 	if userinput == 'newgame':
-		Loader.newgame()
+		game = Loader.newgame()
+		quit = True
+		Loader.loadgamemenu(game)
 	
 	else: 
 		pass
