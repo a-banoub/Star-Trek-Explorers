@@ -10,6 +10,7 @@ GameStates = [
 gamelog = 'gamelog.json'
 
 class game ():
+	
 	def __init__(self, name):
 		self.game = self
 		self.properties = {
@@ -28,9 +29,7 @@ class game ():
 			os.makedirs(dir)
 			self.dir = dir
 			return dir
-		
-		
-		
+	
 		def copymapdata(): 
 			source_file = 'MapData.json'
 			destination_file = os.path.join (self.dir, source_file)
@@ -41,7 +40,6 @@ class game ():
 		copymapdata()
 	
 	def savegamedata(self):
-		
 		data = {
 			'Campaign Name' : self.properties['Campaign Name'],
 			'ID' : self.properties['ID'],
@@ -53,7 +51,6 @@ class game ():
 			'Explored Planets' : self.properties['Explored Planets']
 		}
 		print (data)
-		
 		
 		if os.path.isfile(gamelog):
 			print ("File Exists")

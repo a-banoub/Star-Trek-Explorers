@@ -3,48 +3,62 @@ import bs4
 import json
 import math
 import random
+import os
 
-filename = 'MapData.json'
+#filename = 'MapData.json'
 
 
 distance = 0.0646027555153078
 
 light_years_conversion_distance = 12.6
+
 scaling_factor = light_years_conversion_distance / distance
 
+scaling_factor_meters = scaling_factor * 9.461e15
 
-def get_starting_coords(currentplanet): 
+
+
+def get_starting_coords(currentplanet, game): 
+
+	filename = os.path.join(game.dir, 'MapData.json')
+	
+	print ('Current Planet: ', currentplanet)
+#	print (currentplanet ['geometry'])
+	
 	with open(filename, "r") as file:
 		mapdata = json.load (file)
 		found = False
-		
+	
 	for feature in mapdata['features']:
 		if feature ["properties"] ["name"] == currentplanet:
 				print("Found by Name:", feature)
 				startingcoords = feature['geometry']['coordinates']
 				return startingcoords
+		
 		else: 
 			pass
 				
 def plotcourse (currentplanet, game):	
 	game = game
+	
+	filename = os.path.join(game.dir, 'MapData.json')
+	
 	with open(filename, "r") as file:
 		mapdata = json.load (file)
 		found = False
 	
-	startingcoords = get_starting_coords(currentplanet)
+	startingcoords = get_starting_coords(currentplanet, game)
+	print ('Scaling Factor: ', scaling_factor)
 	
 	destination = input('Planet to Search?')
 	
 	for feature in mapdata['features']:
-		if feature ["properties"] ["name"] == destination:
-			if feature ["properties"] ["subclass"] == 'major':
-				print("Found by Name:", feature)
-				destinationname = feature['properties'] ['name']
-				destinationcoords = feature['geometry']['coordinates']
-				found = True
-				break
-		
+		if 'properties' in feature and 'name' in feature['properties'] and feature['properties']['name'] == destination:
+			destinationname = feature['properties']['name']
+			destinationcoords = feature['geometry']['coordinates']
+			found = True
+			break
+
 		if not found: 
 			print('Planet not Found')
 			
@@ -101,14 +115,42 @@ def plotcourse (currentplanet, game):
 	
 def generate_random_coordinates(max_distance_ly, game):
 	
-	startingcoords = get_starting_coords(game.properties['Current System'])
 
-	max_distance_m = max_distance_ly * (9.461e15)  # Convert light years to meters
+	startingcoords = get_starting_coords(game.properties['Current System'], game)
 	
-	delta_x = random.uniform(-max_distance_m, max_distance_m)
-	delta_y = random.uniform(-max_distance_m, max_distance_m)
+	print ('Starting Coords: ', startingcoords)
+	print ('Max Distance in Light Years: ', max_distance_ly)
+	
+	max_distance_m = max_distance_ly * 9.461e15  # Convert light years to meters
+	max_distance_m_scaled = max_distance_m / scaling_factor_meters
+	
+	
+	print ('Max Distance in Meters: ', max_distance_m_scaled)
+	
+	delta_x = random.uniform (-max_distance_m_scaled, max_distance_m_scaled) 
+	delta_y = random.uniform (-max_distance_m_scaled , max_distance_m_scaled) 
+	
+	print ("Delta X: ", delta_x)
+	print ("Delta Y: ", delta_y)
+	
 	new_coords = [
 		startingcoords[0] + delta_x,
 		startingcoords[1] + delta_y
 	]
+	print ("Generated Coords: ", new_coords)
+	
+	distance = math.sqrt(
+		(new_coords [0] - startingcoords[0]) ** 2 +
+		(new_coords [1] - startingcoords[1]) ** 2
+	)
+	
+	print ('Scaling Factor: ', scaling_factor)
+	print ('Scaling Factor in Meters: ', scaling_factor_meters)
+	
+	print ('Distance = ', distance)
+
+	distance_ly = distance*scaling_factor
+	
+	print ('Distance in LY = :' , distance_ly)
+	
 	return new_coords

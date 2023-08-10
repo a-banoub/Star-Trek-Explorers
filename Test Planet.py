@@ -1,8 +1,9 @@
 import Planet
 import GameManager
+import MapMaker
 
 Name = 'Test Planet'
-gname = "FunkyTown34333"
+gname = "haa323"
 
 game = GameManager.game(gname)
 
@@ -16,3 +17,4 @@ NewPlanet.saveplanet()
 
 print (NewPlanet.properties)
 
+MapMaker.plotcourse(game.properties['Current System'], game)
