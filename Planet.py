@@ -36,11 +36,12 @@ class planet:
 				planet_data = json.loads(file_content)
 				index_to_replace = None
 			
-			for i, feature in enumerate(planet_data['features']):
-				if feature["properties"]["id"] == self.properties['id']:
-					index_to_replace = i
-					break
-				
+				for i, feature in enumerate(planet_data['features']):
+					
+					if feature["properties"]["id"] == self.properties['id']:
+						index_to_replace = i
+						break
+					
 				if index_to_replace is not None:
 					planet_data['features'][index_to_replace] = data
 					
