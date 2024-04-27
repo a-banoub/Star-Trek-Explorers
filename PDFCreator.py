@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import PyPDF2
+import PDFCreator
 import os
 
 input_file = "fillable_char_sheet.pdf"
