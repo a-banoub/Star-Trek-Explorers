@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import Archetypes
 import PDFCreator
-
+import GameManager 
 CharacterName = input("Character Name: ")
 
 PlayerCharacter = CharacterSheet.Character(CharacterName)	
