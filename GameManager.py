@@ -2,6 +2,12 @@ import uuid
 import os
 import shutil
 import json
+import CharacterSheet
+import Archetypes
+import PDFCreator
+import MapMaker
+
+
 
 GameStates = [
 	'Downtime', 'On Duty', 'Away Mission'
@@ -30,7 +36,7 @@ class game ():
 			return dir
 		
 		
-		
+
 		def copymapdata(): 
 			source_file = 'MapData.json'
 			destination_file = os.path.join (self.dir, source_file)
@@ -38,6 +44,7 @@ class game ():
 		
 		self.dir = make_game_directory()
 		copymapdata()
+
 	
 	def savegamedata(self):
 		
@@ -86,4 +93,35 @@ class game ():
 			with open(gamelog, "w") as file:
 				json.dump(game_data, file)
 
-					
+	def newpc (self, game):
+		CharacterName = input("Character Name: ")
+
+		PlayerCharacter = CharacterSheet.Character(CharacterName, game)	
+		print (PlayerCharacter.name)
+
+		species = input ("Species Name: ")
+		PlayerCharacter.add_species (species)
+
+		archetype_names = list(Archetypes.archetypes.keys())
+		combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
+
+		print (PlayerCharacter.name)
+		print (PlayerCharacter.archetype)
+		print (PlayerCharacter.stats)
+
+
+		PlayerCharacter.save_character()
+		print ("PC Saved")
+
+		PDFCreator.mkpdf(PlayerCharacter, game)
+
+	def mainmenu(self, game):
+		print ("Characters, Planet Notes, Etc")
+		userinput = input ("Prompt")
+		
+		if userinput == "newpc":
+			self.newpc(self)
+			self.mainmenu
+		if userinput == "planets":
+			MapMaker.plotcourse(self.properties['Current System'], self)
+			self.mainmenu

@@ -2,6 +2,7 @@
 
 import PDFCreator
 import os
+import PyPDF2
 
 input_file = "fillable_char_sheet.pdf"
 

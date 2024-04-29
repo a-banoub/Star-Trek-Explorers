@@ -8,31 +8,16 @@ import os
 import MapMaker
 
 
-game = GameManager.game('Test02')
+game = GameManager.game('saa')
 
 game.savegamedata()
 
-CharacterName = input("Character Name: ")
-
-PlayerCharacter = CharacterSheet.Character(CharacterName, game)	
-print (PlayerCharacter.name)
-
-species = input ("Species Name: ")
-PlayerCharacter.add_species (species)
-
-archetype_names = list(Archetypes.archetypes.keys())
-combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
-
-print (PlayerCharacter.name)
-print (PlayerCharacter.archetype)
-print (PlayerCharacter.stats)
-
-
-PlayerCharacter.save_character()
-print ("PC Saved")
-
-PDFCreator.mkpdf(PlayerCharacter, game)
+game.newpc(game)
 
 MapMaker.plotcourse(game.properties['Current System'], game)
 
 game.savegamedata()
+
+print (game.properties)
+
+game.mainmenu(game)
