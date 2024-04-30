@@ -122,6 +122,11 @@ class game ():
 		if userinput == "newpc":
 			self.newpc(self)
 			self.mainmenu
+
 		if userinput == "planets":
 			MapMaker.plotcourse(self.properties['Current System'], self)
+			self.mainmenu
+
+		else: 
+			print ("Command Not Recognized")
 			self.mainmenu
