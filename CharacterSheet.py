@@ -47,7 +47,6 @@ class Character:
 			'expertise': self.expertise,
 			'id': self.id
 		}
-		
 		filename = os.path.join (self.game.dir , "CharacterDatabase.json")
 		
 		if os.path.isfile (filename):

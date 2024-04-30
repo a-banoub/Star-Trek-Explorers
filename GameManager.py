@@ -7,8 +7,6 @@ import Archetypes
 import PDFCreator
 import MapMaker
 
-
-
 GameStates = [
 	'Downtime', 'On Duty', 'Away Mission'
 ]
@@ -155,3 +153,5 @@ class game ():
 		else: 
 			print ("Command Not Recognized")
 			self.mainmenu
+
+
