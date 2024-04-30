@@ -16,35 +16,60 @@ GameStates = [
 gamelog = 'gamelog.json'
 
 class game ():
+	def copymapdata(): 
+		source_file = 'MapData.json'
+		destination_file = os.path.join (self.dir, source_file)
+		shutil.copy(source_file, destination_file)
 	def __init__(self, name):
-		self.game = self
-		self.properties = {
-			'Campaign Name': name ,
-			'ID' : str(uuid.uuid4()),
-			'Characters': [],
-			'Current System': 'Sol',
-			'Ship' : None,
-			'Captain' : None,
-			'GameState' : GameStates [0],
-			'Explored Planets' : []
-		}
+			self.game = self
+			self.properties = {
+				'Campaign Name': name ,
+				'ID' : str(uuid.uuid4()),
+				'Characters': [],
+				'Current System': 'Sol',
+				'Ship' : None,
+				'Captain' : None,
+				'GameState' : GameStates [0],
+				'Explored Planets' : []
+			}
 		
-		def make_game_directory():
-			dir = os.path.join('Games',self.properties['Campaign Name'])
-			os.makedirs(dir)
-			self.dir = dir
-			return dir
-		
-		
+			def make_game_directory():
+				dir = os.path.join('Games',self.properties['Campaign Name'])
+				if not os.path.exists(dir):
+					os.makedirs(dir)
+					self.dir = dir
+					self.dir = make_game_directory()
+					copymapdata()
+					return dir
+				else: 
+					pass
+			
 
-		def copymapdata(): 
-			source_file = 'MapData.json'
-			destination_file = os.path.join (self.dir, source_file)
-			shutil.copy(source_file, destination_file)
-		
-		self.dir = make_game_directory()
-		copymapdata()
+	def load_game_data(self, filename, index):
+		with open(filename, 'r') as file:
+			data = json.load(file)
 
+		try: 
+			index = int (index)
+		except ValueError: 
+			print ("Invalid Index. Please provide a valid index.")
+			return
+		
+		if index < 0 or index >= len(data):
+				print ("Invalid Index. Please provide a valid index.")
+				return
+		
+		game_data = data[index]
+		self.properties['Campaign Name'] = game_data['Campaign Name']
+		self.properties['ID'] = game_data['ID']
+		self.properties['Characters'] = game_data['Characters']
+		self.properties['Current System'] = game_data['Current System']
+		self.properties['Ship'] = game_data['Ship']
+		self.properties['Captain'] = game_data['Captain']
+		self.properties['GameState'] = game_data['GameState']
+		self.properties['Explored Planets'] = game_data['Explored Planets']
+
+		print (self.properties)
 	
 	def savegamedata(self):
 		
