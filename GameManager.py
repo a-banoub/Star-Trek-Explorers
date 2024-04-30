@@ -14,7 +14,7 @@ GameStates = [
 gamelog = 'gamelog.json'
 
 class game ():
-	def copymapdata(): 
+	def copymapdata(self): 
 		source_file = 'MapData.json'
 		destination_file = os.path.join (self.dir, source_file)
 		shutil.copy(source_file, destination_file)
@@ -30,18 +30,12 @@ class game ():
 				'GameState' : GameStates [0],
 				'Explored Planets' : []
 			}
+			self.dir = None
 		
-			def make_game_directory():
-				dir = os.path.join('Games',self.properties['Campaign Name'])
-				if not os.path.exists(dir):
-					os.makedirs(dir)
-					self.dir = dir
-					self.dir = make_game_directory()
-					copymapdata()
-					return dir
-				else: 
-					pass
-			
+	def make_game_directory(self):
+		self.dir = os.path.join('Games',self.properties['Campaign Name'])
+		os.makedirs(self.dir)
+		return self.dir 
 
 	def load_game_data(self, filename, index):
 		with open(filename, 'r') as file:
@@ -66,6 +60,8 @@ class game ():
 		self.properties['Captain'] = game_data['Captain']
 		self.properties['GameState'] = game_data['GameState']
 		self.properties['Explored Planets'] = game_data['Explored Planets']
+		self.dir = os.path.join('Games',self.properties['Campaign Name'])
+
 
 		print (self.properties)
 	

@@ -6,13 +6,16 @@ import MapMaker
 gamelog = 'gamelog.json'
 
 def newgame():
-    game = GameManager.game (input('Campaign Name?'))
+    name = input('Campaign Name?')
+    game = GameManager.game (name)
+    game.make_game_directory()
+    game.copymapdata()
     game.savegamedata()
     game.newpc(game)
     MapMaker.plotcourse(game.properties['Current System'], game)
     game.savegamedata()
     print (game.properties)
-    game.mainmenu
+    game.mainmenu(game)
 
 def loadgame():
     with open (gamelog) as log: 
@@ -33,14 +36,13 @@ def gamemenu():
     print ('Main Menu. Type "new" for a new campaign or "load" to load')
     userinput = input('Prompt: ')
     if userinput == ('new'): 
-        action = newgame()
-        pass
+       newgame() 
+       pass
     if userinput == ('load'):
-        action = loadgame()
+        loadgame()
         pass
     else: 
         print ('Invalid Entry. Please try again.')
-        action = gamemenu()
-    action
+        gamemenu()
 
-startup = gamemenu ()
+startup = gamemenu()
