@@ -1,26 +1,48 @@
-import CharacterSheet
+import json
 from tkinter import *
-from tkinter import ttk
-import Archetypes
-import PDFCreator
-import GameManager 
-CharacterName = input("Character Name: ")
+import GameManager
+import MapMaker
 
-PlayerCharacter = CharacterSheet.Character(CharacterName)	
-print (PlayerCharacter.name)
+gamelog = 'gamelog.json'
 
-species = input ("Species Name: ")
-PlayerCharacter.add_species (species)
+def newgame():
+    name = input('Campaign Name?')
+    game = GameManager.game (name)
+    game.make_game_directory()
+    game.copymapdata()
+    game.savegamedata()
+    game.newpc(game)
+    MapMaker.plotcourse(game.properties['Current System'], game)
+    game.savegamedata()
+    print (game.properties)
+    game.mainmenu(game)
 
-archetype_names = list(Archetypes.archetypes.keys())
-combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
+def loadgame():
+    with open (gamelog) as log: 
+        data = json.load(log)
+        for index, entry in enumerate(data):
+            print(f"Index: {index}, Campaign Name: {entry['Campaign Name']}")
 
-print (PlayerCharacter.name)
-print (PlayerCharacter.archetype)
-print (PlayerCharacter.stats)
+    loadindex = input('Index to Load?')
 
+    game = GameManager.game('Loaded Game')
+    game.load_game_data(gamelog, loadindex)
 
-PlayerCharacter.save_character()
-print ("PC Saved")
+    game.mainmenu (game)
 
-PDFCreator.mkpdf(PlayerCharacter)
+    load = loadgame()
+
+def gamemenu():
+    print ('Main Menu. Type "new" for a new campaign or "load" to load')
+    userinput = input('Prompt: ')
+    if userinput == ('new'): 
+       newgame() 
+       pass
+    if userinput == ('load'):
+        loadgame()
+        pass
+    else: 
+        print ('Invalid Entry. Please try again.')
+        gamemenu()
+
+startup = gamemenu()

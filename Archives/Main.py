@@ -3,18 +3,10 @@ from tkinter import *
 from tkinter import ttk
 import Archetypes
 import PDFCreator
-import GameManager
-import os
-import MapMaker
-
-
-game = GameManager.game('Test02')
-
-game.savegamedata()
-
+import GameManager 
 CharacterName = input("Character Name: ")
 
-PlayerCharacter = CharacterSheet.Character(CharacterName, game)	
+PlayerCharacter = CharacterSheet.Character(CharacterName)	
 print (PlayerCharacter.name)
 
 species = input ("Species Name: ")
@@ -31,8 +23,4 @@ print (PlayerCharacter.stats)
 PlayerCharacter.save_character()
 print ("PC Saved")
 
-PDFCreator.mkpdf(PlayerCharacter, game)
-
-MapMaker.plotcourse(game.properties['Current System'], game)
-
-game.savegamedata()
+PDFCreator.mkpdf(PlayerCharacter)

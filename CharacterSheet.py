@@ -3,6 +3,7 @@ import Archetypes
 import json
 import uuid
 import os
+import PDFCreator
 
 class Character: 
 	def __init__(self,name, game):
@@ -17,10 +18,7 @@ class Character:
 		self.game = game
 
 	def add_species (self, species):
-            self.species = species
-	
-#	def add_expertise (self, expertise_name):
-#		self.expertise.append ({expertise_name : 1})
+		self.species = species
 	
 	def call_combobox_archetype_select (self, pc, title, values):
 		self.combobox = GUI.combobox(pc, title, values)
