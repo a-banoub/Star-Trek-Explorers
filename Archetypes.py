@@ -5,7 +5,7 @@ archetypes = 	{'The Outsider':{'StatBlocks':[
 ],
 				'Description' : "The Outsider archetype embodies characters who are different, unique, or out of place in their surroundings. These characters are often non-human or non-traditional, and may struggle to understand or be understood by their peers. Outsiders may have a hard time connecting with others, but they also have a unique perspective that can be valuable to the group. They rely on their resourcefulness to adapt to new situations, and their expertise in their own abilities to find solutions to problems. However, their lack of social skills or cultural awareness may also put them in difficult situations",
 	
-				'Examples' : ["Odo", "Spock" , "Data" "Kes", "Seven" , "Guinean"],
+				'Examples' : ["Odo", "Spock" , "Data", "Kes", "Seven" , "Guinean"],
 				'Abilities' : [
 					{
 						

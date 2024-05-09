@@ -1,5 +1,5 @@
 import uuid
-import Map
+import MapMaker
 
 class planet:
 	def __init__(self, name):
@@ -7,7 +7,7 @@ class planet:
 		self.id = str(uuid.uuid4())
 		
 		max_distance_ly = int ( input ("Max Distance from Current Location"))
-		self.coords = Map.generate_random_coordinates (max_distance_ly)
+		self.coords = MapMaker.generate_random_coordinates (max_distance_ly)
 
 		self.properties = {
 				"class": "planet",
@@ -20,4 +20,8 @@ class planet:
 		self.geometry ={
 			"type": "Point",
 			"coordinates": self.coords
+		}
+
+		self.notes = {
+			
 		}
