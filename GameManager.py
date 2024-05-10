@@ -1,6 +1,7 @@
 import uuid
 import os
 import shutil
+import ship
 import json
 import CharacterSheet
 import Archetypes
@@ -28,7 +29,8 @@ class game ():
 				'Ship' : None,
 				'Captain' : None,
 				'GameState' : GameStates [0],
-				'Explored Planets' : []
+				'Explored Planets' : [],
+				'Ship' : [],
 			}
 			self.dir = None
 		
@@ -146,8 +148,10 @@ class game ():
 			MapMaker.plotcourse(self.properties['Current System'], self)
 			self.mainmenu
 
+		if userinput == "newship":
+			shipname = input ("Ship Name?")
+			self.properties ['Ship'] = ship.ship (shipname)
+			
 		else: 
 			print ("Command Not Recognized")
 			self.mainmenu
-
-
