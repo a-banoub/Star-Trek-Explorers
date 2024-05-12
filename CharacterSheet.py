@@ -1,4 +1,4 @@
-import GUI
+import Archives.GUI as GUI
 import Archetypes
 import json
 import uuid
