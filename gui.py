@@ -4,19 +4,23 @@
 
 
 from pathlib import Path
-
 # from tkinter import *
 # Explicit imports to satisfy Flake8
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
-
+import sys
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/alexbanoub/Desktop/Star-Trek-Explorers/build/assets/frame0")
 
+print (sys.path)
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def button_1_clicked():
+    import Main
+    print ("New Game"),
+    Main.newgame(),
 
 window = Tk()
 
@@ -49,7 +53,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command= button_1_clicked,
     relief="flat"
 )
 button_1.place(
@@ -92,3 +96,4 @@ button_3.place(
 )
 window.resizable(False, False)
 window.mainloop()
+

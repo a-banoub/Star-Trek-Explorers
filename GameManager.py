@@ -5,7 +5,7 @@ import ship
 import json
 import CharacterSheet
 import Archetypes
-import PDFCreator
+#import PDFCreator
 import MapMaker
 
 GameStates = [

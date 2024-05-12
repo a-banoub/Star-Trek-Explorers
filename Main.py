@@ -2,7 +2,9 @@ import json
 from tkinter import *
 import GameManager
 import MapMaker
+import sys
 
+print (sys.path)
 gamelog = 'gamelog.json'
 
 def newgame():
@@ -45,4 +47,4 @@ def gamemenu():
         print ('Invalid Entry. Please try again.')
         gamemenu()
 
-startup = gamemenu()
+#startup = gamemenu()
