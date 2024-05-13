@@ -1,4 +1,4 @@
-import Archives.GUI as GUI
+import gui
 import Archetypes
 import json
 import uuid
@@ -20,13 +20,13 @@ class Character:
 	def add_species (self, species):
 		self.species = species
 	
-	def call_combobox_archetype_select (self, pc, title, values):
-		self.combobox = GUI.combobox(pc, title, values)
-		self.combobox.call()
+	#def call_combobox_archetype_select (self, pc, title, values):
+		#self.combobox = GUI.combobox(pc, title, values)
+		#self.combobox.call()
 	
-	def call_combobox_stat_select (self, pc, title, archetype):
-		self.combobox = GUI.combobox_1 (pc, title, archetype)
-		self.combobox.call()
+	# def call_combobox_stat_select (self, pc, title, archetype):
+		#self.combobox = GUI.combobox_1 (pc, title, archetype)
+		#self.combobox.call()
 		
 	def set_archetype(self, archetype):
 		self.archetype = archetype

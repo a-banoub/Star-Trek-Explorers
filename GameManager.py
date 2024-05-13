@@ -124,7 +124,7 @@ class game ():
 		PlayerCharacter.add_species (species)
 
 		archetype_names = list(Archetypes.archetypes.keys())
-		combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
+		#combo = PlayerCharacter.call_combobox_archetype_select(PlayerCharacter, "Choose Archetype", archetype_names)
 
 		print (PlayerCharacter.name)
 		print (PlayerCharacter.archetype)
