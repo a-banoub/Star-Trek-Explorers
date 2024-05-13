@@ -3,17 +3,15 @@
 # https://github.com/ParthJadhav/Tkinter-Designer
 
 
-class gui:
+
+class gui: 
+    
+
     
     def button_1_clicked (self):
-        from guiswitcher import switcher
         self.window.destroy(),
-        self.switcher.switch_to_frame_1(),
-        import Main
-        print ("New Game"),
-        Main.newgame(),
-    
-    def __init__(self, switcher):
+
+    def __init__(self, switcher) :
         from pathlib import Path
         # from tkinter import *
         # Explicit imports to satisfy Flake8
@@ -25,14 +23,12 @@ class gui:
         self.switcher = switcher
 
         OUTPUT_PATH = Path(__file__).parent
-        ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/alexbanoub/Desktop/Star-Trek-Explorers/build/assets/frame0")
-
-        print (sys.path)
+        ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/alexbanoub/Desktop/Star-Trek-Explorers/build/assets/frame1")
 
         def relative_to_assets(path: str) -> Path:
-            return ASSETS_PATH / Path(path)
+             return ASSETS_PATH / Path(path)
+             print (sys.path)
 
-        
         canvas = Canvas(
             self.window,
             bg = "#000000",
@@ -58,12 +54,12 @@ class gui:
             image=button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command= self.button_1_clicked,
+            command=lambda: print("button_1 clicked"),
             relief="flat"
         )
         button_1.place(
-            x=1139.0,
-            y=319.0,
+            x=111.0,
+            y=339.0,
             width=252.0,
             height=96.0
         )
@@ -78,8 +74,8 @@ class gui:
             relief="flat"
         )
         button_2.place(
-            x=1139.0,
-            y=435.0,
+            x=363.0,
+            y=512.0,
             width=252.0,
             height=96.0
         )
@@ -94,14 +90,10 @@ class gui:
             relief="flat"
         )
         button_3.place(
-            x=1139.0,
-            y=551.0,
+            x=719.0,
+            y=714.0,
             width=252.0,
             height=96.0
         )
-        
         self.window.resizable(False, False)
         self.window.mainloop()
-
-    def destroy(self):
-        self.window.destroy()
