@@ -134,7 +134,7 @@ class game ():
 		PlayerCharacter.save_character()
 		print ("PC Saved")
 
-		PDFCreator.mkpdf(PlayerCharacter, game)
+		#PDFCreator.mkpdf(PlayerCharacter, game)
 
 	def mainmenu(self, game):
 		print ("Characters, Planet Notes, Etc")

@@ -25,7 +25,7 @@ class gui:
         self.switcher = switcher
 
         OUTPUT_PATH = Path(__file__).parent
-        ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/alexbanoub/Desktop/Star-Trek-Explorers/build/assets/frame0")
+        ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\alexa\OneDrive\Desktop\Star Trek Explorers\Star-Trek-Explorers\build\assets\frame0")
 
         print (sys.path)
 
