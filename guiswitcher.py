@@ -12,7 +12,13 @@ class switcher():
         global currentgui
         currentgui = gui(self)
         start = currentgui
-    
+   
+    def switch_to_frame_2(self):
+        from gui2 import gui
+        global currentgui
+        currentgui = gui(self)
+        start = currentgui
+
     def __init__ (self):
 
         global currentgui
