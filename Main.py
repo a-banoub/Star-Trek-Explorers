@@ -7,9 +7,10 @@ import sys
 print (sys.path)
 gamelog = 'gamelog.json'
 
-def newgame():
-    name = input('Campaign Name?')
-    game = GameManager.game (name)
+def newgame (name):
+    #name = input('Campaign Name?')
+    campaign_name = name
+    game = GameManager.game (campaign_name)
     game.make_game_directory()
     game.copymapdata()
     game.savegamedata()
